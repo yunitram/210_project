@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CharacterListTest {
     // test for remove character
-
     // test case to remove one character from a characterlist of 5 characters
     @Test
     void testremoveCharacter() {
         List<Character> testcharlist;
         CharacterList testy = new CharacterList();
+        testy.createCharacters();
         testcharlist = testy.removeCharacter("goku");
         assertEquals(testcharlist.size(), 4);
         assertEquals(testcharlist.get(0), (testy.findChar("naruto")));
@@ -33,6 +33,18 @@ public class CharacterListTest {
         assertEquals(testy1.characters.size(), 1);
         assertEquals(testy1.characters.get(0), (testy.findChar("naruto")));
     }
+
+    @Test
+    void testfindChar() {
+        List<Character > testcharlist;
+        CharacterList testy = new CharacterList();
+        Character testy1;
+        testy.createCharacters();
+        testy1 = testy.findChar("makima");
+        assertEquals(testy1.getCharacterName(), "makima");
+    }
+
+
 
 
 }

@@ -51,4 +51,40 @@ public class TierTest {
 
     }
 
+    @Test
+    void testfindCharintier() {
+        List<Character > testcharlist;
+        Tier testy = new Tier();
+        Character testy1 = new Character("naruto","the hokage");
+        Character testy2 = new Character("goku","the strongest saiyan");
+        testy.addCharacter(testy1);
+        testy.addCharacter(testy2);
+        assertEquals(testy1, testy.findCharintier("naruto"));
+        assertEquals(testy2, testy.findCharintier("goku"));
+
+
+    }
+
+    @Test
+    void testcharactersList() {
+        List<Character > testcharlist;
+        Tier testy = new Tier();
+        Character testy1 = new Character("naruto","the hokage");
+        Character testy2 = new Character("goku","the strongest saiyan");
+        testy.addCharacter(testy1);
+        testy.addCharacter(testy2);
+        assertEquals(testy.charactersList(), "naruto goku ");
+
+
+    }
+
+    @Test
+    void testrenameTier() {
+        Tier testy = new Tier();
+        testy.renameTier("the goat");
+        assertEquals(testy.getName(), "the goat");
+
+
+    }
+
 }

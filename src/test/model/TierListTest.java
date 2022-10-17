@@ -19,6 +19,17 @@ class TierListTest {
         assertEquals(testy1.getName(), "S");
     }
 
+    @Test
+    void testgetPos() {
+        List<Tier> testtierlist;
+        TierList testy = new TierList();
+        new Tier();
+        Tier testy1;
+        testy.createElList();
+        assertEquals(testy.getPos("S"), 0);
+    }
+
+
     // test the case of adding a tier to an empty tierlist
     @Test
     void testaddTier() {
@@ -30,6 +41,19 @@ class TierListTest {
         assertEquals(testy.tiersList.get(5).getName(), "E");
 
 
+
+    }
+
+    @Test
+    void testswapTiers() {
+        TierList testy = new TierList();
+        new Tier();
+        testy.createElList();
+        assertEquals(testy.getPos("S"), 0);
+        assertEquals(testy.getPos("D"), 4);
+        testy.swapTiers("S", "D");
+        assertEquals(testy.getPos("S"), 4);
+        assertEquals(testy.getPos("D"), 0);
 
     }
 }

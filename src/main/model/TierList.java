@@ -24,6 +24,10 @@ public class TierList {
         this.tiersList.add(newbie);
     }
 
+    // method is unused currently but keeping it in case I want to add a swap function
+    // requires: names of two existing tiers
+    // modifies: this
+    // effects: swaps the positions of the tiers
     public void swapTiers(String s, String t) {
         Integer w = this.getPos(s);
         Integer x = this.getPos(t);
