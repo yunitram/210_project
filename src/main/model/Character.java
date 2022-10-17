@@ -8,7 +8,7 @@ public class Character {
 
     // requires: nothing
     // modifies: nothing
-    // effects: constructs a Character with a name and description
+    // effects: constructs a Character with a name and description.
     public Character(String characterName, String description) {
         this.characterName = characterName;
         this.description = description;
