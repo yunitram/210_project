@@ -51,6 +51,7 @@ public class TierTest {
 
     }
 
+    // test case: find a character in a tier
     @Test
     void testfindCharintier() {
         List<Character > testcharlist;
@@ -65,6 +66,7 @@ public class TierTest {
 
     }
 
+    // test case: test characterslist
     @Test
     void testcharactersList() {
         List<Character > testcharlist;
@@ -78,6 +80,7 @@ public class TierTest {
 
     }
 
+    // test case: test renaming a tier
     @Test
     void testrenameTier() {
         Tier testy = new Tier();

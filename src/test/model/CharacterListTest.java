@@ -34,6 +34,22 @@ public class CharacterListTest {
         assertEquals(testy1.characters.get(0), (testy.findChar("naruto")));
     }
 
+    // test add a character to a non-empty character list
+    @Test
+    void testaddanotherChar() {
+        List<Character> testcharlist;
+        CharacterList testy = new CharacterList();
+        CharacterList testy1 = new CharacterList();
+        testy.createCharacters();
+        testy1.addChar(testy.findChar("naruto"));
+        assertEquals(testy1.characters.size(), 1);
+        assertEquals(testy1.characters.get(0), (testy.findChar("naruto")));
+        testy1.addChar(testy.findChar("makima"));
+        assertEquals(testy1.characters.size(), 2);
+        assertEquals(testy1.characters.get(0), (testy.findChar("naruto")));
+        assertEquals(testy1.characters.get(1), (testy.findChar("makima")));
+    }
+
     @Test
     void testfindChar() {
         List<Character > testcharlist;

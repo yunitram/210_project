@@ -19,8 +19,5 @@ public class CharacterTest {
         Character testy = new Character("naruto" , "the hokage");
         assertEquals(testy.getDescription(), "the hokage");
     }
-
-
-
     }
 

@@ -93,6 +93,7 @@ public class Torun {
         System.out.println("Character name:");
         newname = input.next();
         System.out.println("Character description:");
+        input1.nextLine();
         newdesc = input1.nextLine();
         Character sheesh = new Character(newname, newdesc);
         characterList.addChar(sheesh);
