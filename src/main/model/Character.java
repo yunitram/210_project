@@ -6,7 +6,7 @@ public class Character {
     final String characterName;
     final String description;
 
-    // requires: nothing.
+    // requires: nothing
     // modifies: nothing
     // effects: constructs a Character with a name and description
     public Character(String characterName, String description) {
