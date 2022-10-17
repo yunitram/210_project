@@ -55,10 +55,12 @@ public class CharacterList {
     // requires: nothing
     // modifies: nothing
     // effects: prints all characters in the list with their descriptions
-    public void printCharacters() {
+    public String printCharacters() {
+        String s = "";
         for (Character c: this.characters) {
-            c.charAnddesc();
+            s = s.concat(c.charAnddesc()).concat("\n");
         }
+        return s;
     }
 
     // requires: name of a character in the character list

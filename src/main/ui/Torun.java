@@ -23,8 +23,8 @@ public class Torun {
     // modifies: nothing
     // effects: prints all the base tiers, then the base characters
     public void printTiersandChar() {
-        tierList.printTiers();
-        characterList.printCharacters();
+        System.out.println(tierList.printTiers());
+        System.out.println(characterList.printCharacters());
     }
 
     // requires: nothing
@@ -119,6 +119,7 @@ public class Torun {
         this.createTiersandChar();
         boolean keepgoing = true;
         String command;
+
 
         while (keepgoing) {
             this.printTiersandChar();

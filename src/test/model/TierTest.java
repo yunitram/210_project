@@ -90,4 +90,14 @@ public class TierTest {
 
     }
 
+    // test case: returning a tier and its contents
+    @Test
+    void testtiersandchars() {
+        Tier testy = new Tier();
+        Character makima = new Character("makima", "would die for her");
+        testy.renameTier("god tier");
+        testy.addCharacter(makima);
+        assertEquals(testy.tierandchars(), "god tier: makima ");
+    }
+
 }

@@ -61,4 +61,17 @@ class TierListTest {
         assertEquals(testy.getPos("S"), 4);
         assertEquals(testy.getPos("D"), 0);
     }
+
+    @Test
+    void testprintTiers() {
+        TierList testy = new TierList();
+        Character naruto = new Character("naruto", "the seventh");
+        Character vegeta = new Character("vegeta", "the saiyan prince");
+        testy.addTier("S");
+        testy.findTier("S").addCharacter(vegeta);
+        testy.addTier("A");
+        testy.findTier("A").addCharacter(naruto);
+        assertEquals(testy.printTiers(), "S: vegeta \nA: naruto \n");
+
+    }
 }

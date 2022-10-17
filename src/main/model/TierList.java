@@ -70,10 +70,12 @@ public class TierList {
     // requires: nothing
     // modifies: nothing
     // effects: prints all tiers and their characterlists in the tierlist
-    public void printTiers() {
+    public String printTiers() {
+        String s = "";
         for (Tier tier : this.tiersList) {
-            tier.tierandchars();
+            s = s.concat(tier.tierandchars()).concat("\n");
         }
+        return s;
     }
 
     // requires: name of tier must be in the tierlist

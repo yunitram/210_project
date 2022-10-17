@@ -60,6 +60,17 @@ public class CharacterListTest {
         assertEquals(testy1.getCharacterName(), "makima");
     }
 
+    @Test
+    void testprintCharacters() {
+        CharacterList testy = new CharacterList();
+        Character naruto = new Character("naruto", "the seventh");
+        Character vegeta = new Character("vegeta", "the saiyan prince");
+        testy.addChar(naruto);
+        testy.addChar(vegeta);
+        assertEquals(testy.printCharacters(), "naruto the seventh\nvegeta the saiyan prince\n");
+
+    }
+
 
 
 

@@ -64,8 +64,9 @@ public class Tier {
     // requires: nothing
     // modifies: nothing
     // effects: prints out the tier name followed by the characters in the tier
-    public void tierandchars() {
-        System.out.println(this.tierName + ": " + this.charactersList() + " ");
+    public String tierandchars() {
+        String s = "";
+        return s.concat(this.tierName).concat(": ").concat(this.charactersList());
     }
 
     // requires: name of a character in the Tier
