@@ -7,7 +7,7 @@ What will the application do?
 The application will be a simple tierlist maker with the
 following functions and attributes
 - UI will display a roster of anime characters and tiers 
-from S to F
+from S to D
 - User will be allowed to add/remove characters to tiers
 - Users will be allowed to look into tiers to see the
 characters currently added
@@ -16,8 +16,6 @@ character
 - Users will be allowed to view a 'presentation display' of 
 the tierlist, which will show each tier and all characters
 within it (like a normal tierlist)
-- Users will also be allowed to rename the tiers (for example
-changing 'S' to '**THE GOAT**')
 - Users will be allowed to add tiers
 
 Who will use it?
