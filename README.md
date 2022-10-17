@@ -34,4 +34,10 @@ to create and discuss with friends. Due to the relevancy
 of tierlists, and the personal interest I have in the subject,
 I've decided to model my CPSC210 project after a tierlist
 maker.
+
+## User Stories
+- I want to be able to add characters to tier lists
+- I want to be able to remove characters from tier lists
+- I want to be able to add characters
+- I want to be able to add tiers
   

@@ -9,21 +9,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CharacterListTest {
     // test for remove character
 
+    // test case to remove one character from a characterlist of 5 characters
     @Test
     void testremoveCharacter() {
         List<Character> testcharlist;
         CharacterList testy = new CharacterList();
-        testcharlist = testy.createCharacters();
-        testcharlist.remove(2);
+        testcharlist = testy.removeCharacter("goku");
         assertEquals(testcharlist.size(), 4);
         assertEquals(testcharlist.get(0), (testy.findChar("naruto")));
-        testcharlist = testy.removeCharacter("goku");
-        assertEquals(testcharlist.size(), 3);
-        assertEquals(testcharlist.get(0), (testy.findChar("naruto")));
-        assertEquals(testcharlist.get(1), (testy.findChar("corey")));
-        assertEquals(testcharlist.get(2), (testy.findChar("kirito")));
+        assertEquals(testcharlist.get(1), (testy.findChar("makima")));
+        assertEquals(testcharlist.get(2), (testy.findChar("corey")));
+        assertEquals(testcharlist.get(3), (testy.findChar("kirito")));
+    }
 
-    } // remove character OPERATES on a CharacterList, TAKES in a string and RETURNS a list of characters
-      // minus the Character with the name of the string
+    // test add a character to an empty character list
+    @Test
+    void testaddChar() {
+        List<Character> testcharlist;
+        CharacterList testy = new CharacterList();
+        CharacterList testy1 = new CharacterList();
+        testy.createCharacters();
+        testy1.addChar(testy.findChar("naruto"));
+        assertEquals(testy1.characters.size(), 1);
+        assertEquals(testy1.characters.get(0), (testy.findChar("naruto")));
+    }
+
 
 }

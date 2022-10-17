@@ -31,7 +31,7 @@ public class Character {
     // requires: nothing
     // modifies: nothing
     // effects: prints the character name and description
-    public void charAnddesc() {
-        System.out.println(this.characterName + " " + this.description);
+    public String charAnddesc() {
+        return this.characterName + " " + this.description;
     }
 }
