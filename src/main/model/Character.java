@@ -21,7 +21,7 @@ public class Character {
         return this.description;
     }
 
-    // requires: nothing
+    // requires: nothing.
     // modifies: nothing
     // effects: returns the character name
     public String getCharacterName() {
