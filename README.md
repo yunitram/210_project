@@ -40,4 +40,6 @@ maker.
 - I want to be able to remove characters from tier lists
 - I want to be able to add characters
 - I want to be able to add tiers
+- I want to be able to save my Tierlist to file
+- I want to be able to load my Tierlists from file
   

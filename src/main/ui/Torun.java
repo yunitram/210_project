@@ -10,7 +10,6 @@ import java.util.Scanner;
 // Tierlist application
 public class Torun {
     private Scanner input;
-    private Scanner input1;
     CharacterList characterList = new CharacterList();
     TierList tierList = new TierList();
 
@@ -34,7 +33,6 @@ public class Torun {
         tierList.createElList();
         characterList.createCharacters();
         input = new Scanner(System.in);
-        input1 = new Scanner(System.in);
 
     }
 
@@ -65,7 +63,7 @@ public class Torun {
         System.out.println("enter character name");
         String charname = input.next();
         System.out.println("enter tier name");
-        String tiername = input1.next();
+        String tiername = input.next();
         tierList.findTier(tiername).addCharacter(characterList.findChar(charname)); //adds the character to the tier
         characterList.removeCharacter(charname); // returns a list of characters without the charname
     }
@@ -78,7 +76,7 @@ public class Torun {
         System.out.println("enter character name");
         String charname = input.next();
         System.out.println("enter tier name");
-        String tiername = input1.next();
+        String tiername = input.next();
         n = tierList.findTier(tiername);
         characterList.addChar(n.findCharintier(charname));
         n.removeCharacterfromtier(charname);
@@ -91,10 +89,9 @@ public class Torun {
         String newname;
         String newdesc;
         System.out.println("Character name:");
-        newname = input.next();
+        newname = input.nextLine();
         System.out.println("Character description:");
-        input1.nextLine();
-        newdesc = input1.nextLine();
+        newdesc = input.nextLine();
         Character sheesh = new Character(newname, newdesc);
         characterList.addChar(sheesh);
     }
@@ -105,7 +102,7 @@ public class Torun {
     private void createtierfn() {
         String newname;
         System.out.println("Tier name:");
-        newname = input.next();
+        newname = input.nextLine();
         tierList.addTier(newname);
     }
 
@@ -119,18 +116,16 @@ public class Torun {
         this.createTiersandChar();
         boolean keepgoing = true;
         String command;
-
-
         while (keepgoing) {
             this.printTiersandChar();
             this.askifAction();
-            command = input.next();
+            command = input.nextLine();
             if (command.equals("n")) {
                 System.out.println("thank you! goodbye :)");
                 keepgoing = false;
             } else {
                 this.askwhichAction();
-                command = input.next();
+                command = input.nextLine();
                 switch (command) {
                     case "add":
                         this.addfn();
