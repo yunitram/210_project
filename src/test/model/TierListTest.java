@@ -52,6 +52,7 @@ class TierListTest {
         assertEquals(testy.tiersList.get(5).getName(), "G");
     }
 
+    // test the case of swapping tier positions in the tierlist
     @Test
     void testswapTiers() {
         TierList testy = new TierList("tierlist 1");
@@ -63,6 +64,7 @@ class TierListTest {
         assertEquals(testy.getPos("S"), 4);
         assertEquals(testy.getPos("D"), 0);
     }
+
 
     @Test
     void testprintTiers() {

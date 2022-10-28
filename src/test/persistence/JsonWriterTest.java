@@ -1,6 +1,7 @@
 package persistence;
 
 import model.Character;
+import model.CharacterList;
 import model.Tier;
 import model.TierList;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,7 @@ class JsonWriterTest extends JsonTest {
         }
     }
 
+    // tests writer with an empty tierlist and a tierlist with empty tiers
     @Test
     void testWriterEmptyWorkroom() {
         try {
@@ -40,6 +42,15 @@ class JsonWriterTest extends JsonTest {
             tl = reader.read();
             assertEquals("Tierlist 1", tl.getName());
             assertEquals(0, tl.getTiers().size());
+            tl.createElList();
+            assertEquals(5, tl.getTiers().size());
+            assertEquals(0, tl.getTiers().get(0).getCharacters().size());
+            assertEquals(0, tl.getTiers().get(1).getCharacters().size());
+            assertEquals(0, tl.getTiers().get(2).getCharacters().size());
+            assertEquals(0, tl.getTiers().get(3).getCharacters().size());
+            assertEquals(0, tl.getTiers().get(4).getCharacters().size());
+
+
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
@@ -49,6 +60,8 @@ class JsonWriterTest extends JsonTest {
     void testWriterGeneralWorkroom() {
         try {
             TierList tl = new TierList("Tierlist 1");
+            CharacterList cl = new CharacterList();
+            cl.createCharacters();
             Character naruto = new Character("naruto", "the hokage");
             Character makima = new Character("makima", "i LOVE her <33");
             tl.createElList();
@@ -61,11 +74,19 @@ class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralTierList1.json");
             tl = reader.read();
-            assertEquals("Tierlist 1", tl.getName());
+            cl = reader.find();
             List<Tier> tiers = tl.getTiers();
-            assertEquals(5, tiers.size());
-            checkTier("S", tiers.get(0));
-            checkTier("A", tiers.get(1));
+            assertEquals("Tierlist 1", tl.getName());
+            assertEquals(1, tiers.get(0).getCharacters().size());
+            assertEquals("makima", tiers.get(0).getCharacters().get(0).getCharacterName());
+            assertEquals(0, tiers.get(1).getCharacters().size());
+            assertEquals(1, tiers.get(2).getCharacters().size());
+            assertEquals("naruto", tiers.get(2).getCharacters().get(0).getCharacterName());
+            assertEquals(0, tiers.get(3).getCharacters().size());
+            assertEquals(0, tiers.get(4).getCharacters().size());
+            assertEquals(2, cl.getCharacters().size());
+            assertEquals("makima", cl.getCharacters().get(0).getCharacterName());
+            assertEquals("naruto", cl.getCharacters().get(1).getCharacterName());
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");
