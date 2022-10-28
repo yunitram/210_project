@@ -88,5 +88,6 @@ public class CharacterList {
         for (Character b : bl.getCharacters()) {
             cl.removeCharacter(b.getCharacterName());
         }
-        return cl;}
+        return cl;
+    }
 }
