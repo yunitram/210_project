@@ -83,7 +83,9 @@ public class CharacterList {
         this.characters.add(c);
     }
 
-    // Effects, takes two characterlists cl and bl, removes elements of bl from cl
+    // requires: nothing
+    // modifies: cl
+    // effects, takes two characterlists cl and bl, removes elements of bl from cl
     public CharacterList removeCharacters(CharacterList cl, CharacterList bl) {
         for (Character b : bl.getCharacters()) {
             cl.removeCharacter(b.getCharacterName());

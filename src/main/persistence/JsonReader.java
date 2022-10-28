@@ -22,6 +22,8 @@ public class JsonReader {
         this.source = source;
     }
 
+    // requires: nothing
+    // modifies: nothing
     // EFFECTS: reads TierList from file and returns it;
     // throws IOException if an error occurs reading data from file
     public TierList read() throws IOException {
@@ -30,12 +32,18 @@ public class JsonReader {
         return parseWorkRoom(jsonObject);
     }
 
+    // requires: nothing
+    // modifies: nothing
+    // EFFECTS: reads CharacterList from file and returns it;
+    // throws IOException if an error occurs reading data from file
     public CharacterList find() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return findWorkRoom(jsonObject);
     }
 
+    // requires: nothing
+    // modifies: nothing
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
@@ -47,6 +55,8 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
+    // requires: nothing
+    // modifies: nothing
     // EFFECTS: parses TierList from JSON object and returns it
     private TierList parseWorkRoom(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
@@ -55,6 +65,7 @@ public class JsonReader {
         return tl;
     }
 
+    // requires: nothing
     // MODIFIES: tl
     // EFFECTS: parses thingies from JSON object and adds them to workroom
     private void addTiers(TierList tl, JSONObject jsonObject) {
@@ -65,7 +76,9 @@ public class JsonReader {
         }
     }
 
-    // // adds all the characters in JSON tier to the tier given
+    // requires: nothing
+    // modifies: tier
+    // effects adds all the characters in JSON tier to the tier given
     private void addCharacters(Tier tier, JSONObject jsonObject) {
         JSONArray listOfCharacters = jsonObject.getJSONArray("tiercontent");
         for (Object character : listOfCharacters) {
@@ -77,6 +90,7 @@ public class JsonReader {
         }
     }
 
+    // requires: nothing
     // MODIFIES: wr
     // EFFECTS: parses thingy from JSON object and adds it to workroom
     private void addTier(TierList wr, JSONObject jsonObject) {
@@ -88,6 +102,8 @@ public class JsonReader {
         wr.addFilledTier(thingy);
     }
 
+    // requires: nothing
+    // modifies: nothing
     // EFFECTS: parses JSON object and returns a list of characters in it
     private CharacterList findWorkRoom(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
@@ -96,7 +112,8 @@ public class JsonReader {
         return cl;
     }
 
-    // MODIFIES: tl
+    // requires: nothing
+    // MODIFIES: cl
     // EFFECTS: parses thingies from JSON object and adds them to workroom
     private void addChars(CharacterList cl, JSONObject jsonObject) {
         JSONArray listOfTiers = jsonObject.getJSONArray("tiers");
@@ -106,7 +123,9 @@ public class JsonReader {
         }
     }
 
-    // // adds all the characters in JSON tier to the tier given
+    // requires: nothing
+    // modifies: cl
+    // effects adds all the characters in JSON tier to the tier given
     private void addChar(CharacterList cl, JSONObject jsonObject) {
         JSONArray listOfCharacters = jsonObject.getJSONArray("tiercontent");
         for (Object character : listOfCharacters) {

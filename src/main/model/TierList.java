@@ -109,6 +109,9 @@ public class TierList implements Writable {
         return this.tiersList.get(w); // returns tier
     }
 
+    // requires: nothing
+    // modifies: nothing
+    // effects: converts tierlist into a JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -117,6 +120,9 @@ public class TierList implements Writable {
         return json;
     }
 
+    // requires: nothing
+    // modifies: nothing
+    // effects: places each tier in a tierlist into a JSONArray
     private JSONArray tierListToJason() {
         JSONArray jsonArray = new JSONArray();
         for (Tier t : tiersList) {

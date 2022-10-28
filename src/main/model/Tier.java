@@ -89,6 +89,9 @@ public class Tier implements Writable {
         return this.characters.get(w);
     }
 
+    // requires: nothing
+    // modifies: nothing
+    // effects: takes a tier and converts it into a JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

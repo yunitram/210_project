@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 // Tierlist application
+// Some code was taken from the sample application
 public class Torun {
     private Scanner input;
     private CharacterList characterList;
@@ -121,7 +122,10 @@ public class Torun {
         tierList.addTier(newname);
     }
 
-    private void saveWorkRoom() {
+    // requires: nothing
+    // modifies: nothing
+    // effect: saves tierlist to file
+    private void saveTierList() {
         try {
             jsonWriter.open();
             jsonWriter.write(tierList);
@@ -132,9 +136,10 @@ public class Torun {
         }
     }
 
+    // requires: nothing
     // MODIFIES: this
     // EFFECTS: loads workroom from file
-    private void loadWorkRoom() {
+    private void loadTierList() {
         try {
             tierList = jsonReader.read();
             characterList.removeCharacters(characterList, jsonReader.find());
@@ -178,10 +183,10 @@ public class Torun {
                         this.createtierfn();
                         break;
                     case "save":
-                        this.saveWorkRoom();
+                        this.saveTierList();
                         break;
                     case "load":
-                        this.loadWorkRoom();
+                        this.loadTierList();
                         break;
                 }
             }
