@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -74,4 +76,36 @@ class TierListTest {
         assertEquals(testy.printTiers(), "S: vegeta \nA: naruto \n");
 
     }
+
+    @Test
+    void testAddFilledTier() {
+        TierList tl = new TierList("better to cum in the sink");
+        Tier t = new Tier();
+        t.renameTier("than to sink in the cum");
+        tl.addFilledTier(t);
+        assertEquals(1, tl.getTiers().size());
+        assertEquals(tl.getTiers().get(0).getName(), "than to sink in the cum");
+
+    }
+
+    @Test
+    void testToJson() {
+        TierList tl = new TierList("poopybutthole");
+        tl.createElList();
+        JSONObject json = tl.toJson();
+        assertEquals(json.getString("name"), "poopybutthole");
+        JSONArray jtiers = json.getJSONArray("tiers");
+        JSONObject tier = (JSONObject) jtiers.get(0);
+        assertEquals(tier.getString("name"), "S");
+        JSONObject tier1 = (JSONObject) jtiers.get(1);
+        assertEquals(tier1.getString("name"), "A");
+        JSONObject tier2 = (JSONObject) jtiers.get(2);
+        assertEquals(tier2.getString("name"), "B");
+        JSONObject tier3 = (JSONObject) jtiers.get(3);
+        assertEquals(tier3.getString("name"), "C");
+        JSONObject tier4 = (JSONObject) jtiers.get(4);
+        assertEquals(tier4.getString("name"), "D");
+    }
+
+
 }

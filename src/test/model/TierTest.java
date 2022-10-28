@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TierTest {
 
@@ -98,6 +101,28 @@ public class TierTest {
         testy.renameTier("god tier");
         testy.addCharacter(makima);
         assertEquals(testy.tierandchars(), "god tier: makima ");
+    }
+
+    @Test
+    void testToJson() {
+        Character makima = new Character("makima", "would die for her");
+        Tier t = new Tier();
+        t.addCharacter(makima);
+        t.renameTier("oh yeah ive got a big one");
+        assertEquals(t.toJson().getString("name"), "oh yeah ive got a big one");
+        JSONArray characterlist = t.toJson().getJSONArray("tiercontent");
+        JSONObject jcharacter = (JSONObject) characterlist.get(0);
+        assertEquals(jcharacter.get("characterName"), "makima");
+        assertEquals(jcharacter.get("description"), "would die for her");
+    }
+
+    @Test
+    void testToJsonemptyTier() {
+        Tier t = new Tier();
+        t.renameTier("oh yeah ive got a big one");
+        assertEquals(t.toJson().getString("name"), "oh yeah ive got a big one");
+        JSONArray characterlist = t.toJson().getJSONArray("tiercontent");
+        assertTrue(characterlist.isEmpty());
     }
 
 }
