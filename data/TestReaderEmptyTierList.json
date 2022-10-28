@@ -1,0 +1,25 @@
+{
+  "tiers": [
+    {
+      "name": "S",
+      "tiercontent": []
+    },
+    {
+      "name": "A",
+      "tiercontent": []
+    },
+    {
+      "name": "B",
+      "tiercontent": []
+    },
+    {
+      "name": "C",
+      "tiercontent": []
+    },
+    {
+      "name": "D",
+      "tiercontent": []
+    }
+  ],
+  "name": "Tierlist 1"
+}

@@ -11,15 +11,14 @@ public class CharacterListTest {
     // test case to remove one character from a characterlist of 5 characters
     @Test
     void testremoveCharacter() {
-        List<Character> testcharlist;
         CharacterList testy = new CharacterList();
         testy.createCharacters();
-        testcharlist = testy.removeCharacter("goku");
-        assertEquals(testcharlist.size(), 4);
-        assertEquals(testcharlist.get(0), (testy.findChar("naruto")));
-        assertEquals(testcharlist.get(1), (testy.findChar("makima")));
-        assertEquals(testcharlist.get(2), (testy.findChar("corey")));
-        assertEquals(testcharlist.get(3), (testy.findChar("kirito")));
+        testy.removeCharacter("goku");
+        assertEquals(testy.getCharacters().size(), 4);
+        assertEquals(testy.getCharacters().get(0), (testy.findChar("naruto")));
+        assertEquals(testy.getCharacters().get(1), (testy.findChar("makima")));
+        assertEquals(testy.getCharacters().get(2), (testy.findChar("corey")));
+        assertEquals(testy.getCharacters().get(3), (testy.findChar("kirito")));
     }
 
     // test add a character to an empty character list
@@ -68,6 +67,22 @@ public class CharacterListTest {
         testy.addChar(naruto);
         testy.addChar(vegeta);
         assertEquals(testy.printCharacters(), "naruto the seventh\nvegeta the saiyan prince\n");
+
+    }
+
+    @Test
+    void testremoveCharacters() {
+        CharacterList testy = new CharacterList();
+        CharacterList testy1 = new CharacterList();
+        Character naruto = new Character("naruto", "the seventh");
+        Character vegeta = new Character("vegeta", "the saiyan prince");
+        testy.addChar(naruto);
+        testy.addChar(vegeta);
+        assertEquals(testy.getCharacters().size(), 2);
+        testy1.addChar(naruto);
+        testy1.addChar(vegeta);
+        testy.removeCharacters(testy, testy1);
+        assertEquals(testy.getCharacters().size(), 0);
 
     }
 

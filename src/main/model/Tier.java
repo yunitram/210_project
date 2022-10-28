@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // represents a Tier, consisting of a name and a list of characters
-public class Tier {
+public class Tier implements Writable {
     final List<Character> characters;
     private String tierName;
 
@@ -14,6 +17,10 @@ public class Tier {
     public Tier() {
         this.characters = new ArrayList<>();
         this.tierName = "";
+    }
+
+    public List<Character> getCharacters() {
+        return this.characters;
     }
 
     // requires: a character in the CharacterList
@@ -80,6 +87,14 @@ public class Tier {
             }
         }
         return this.characters.get(w);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", tierName);
+        json.put("tiercontent", characters);
+        return json;
     }
 
 }

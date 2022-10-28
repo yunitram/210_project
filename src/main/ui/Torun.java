@@ -4,17 +4,29 @@ import model.Character;
 import model.CharacterList;
 import model.Tier;
 import model.TierList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Tierlist application
 public class Torun {
     private Scanner input;
-    CharacterList characterList = new CharacterList();
-    TierList tierList = new TierList();
+    private CharacterList characterList;
+    private TierList tierList;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/tierlist.json";
 
     // effects: runs tierlist programme
     public Torun() {
+        input = new Scanner(System.in);
+        tierList = new TierList("Tierlist 1");
+        characterList = new CharacterList();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         setup();
     }
 
@@ -54,6 +66,9 @@ public class Torun {
         System.out.println("remove -> remove character from a tier");
         System.out.println("createchar -> create a new character");
         System.out.println("createtier -> create a new tier");
+        System.out.println("save -> save your current tierlist");
+        System.out.println("load -> load a tierlist");
+
     }
 
     // requires: nothing
@@ -61,9 +76,9 @@ public class Torun {
     // effect adds a character to a specified tier
     private void addfn() {
         System.out.println("enter character name");
-        String charname = input.next();
+        String charname = input.nextLine();
         System.out.println("enter tier name");
-        String tiername = input.next();
+        String tiername = input.nextLine();
         tierList.findTier(tiername).addCharacter(characterList.findChar(charname)); //adds the character to the tier
         characterList.removeCharacter(charname); // returns a list of characters without the charname
     }
@@ -74,9 +89,9 @@ public class Torun {
     private void removefn() {
         Tier n;
         System.out.println("enter character name");
-        String charname = input.next();
+        String charname = input.nextLine();
         System.out.println("enter tier name");
-        String tiername = input.next();
+        String tiername = input.nextLine();
         n = tierList.findTier(tiername);
         characterList.addChar(n.findCharintier(charname));
         n.removeCharacterfromtier(charname);
@@ -104,6 +119,29 @@ public class Torun {
         System.out.println("Tier name:");
         newname = input.nextLine();
         tierList.addTier(newname);
+    }
+
+    private void saveWorkRoom() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(tierList);
+            jsonWriter.close();
+            System.out.println("Saved to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadWorkRoom() {
+        try {
+            tierList = jsonReader.read();
+            characterList.removeCharacters(characterList, jsonReader.find());
+            System.out.println("Loaded " + tierList.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 
@@ -138,6 +176,12 @@ public class Torun {
                         break;
                     case "createtier":
                         this.createtierfn();
+                        break;
+                    case "save":
+                        this.saveWorkRoom();
+                        break;
+                    case "load":
+                        this.loadWorkRoom();
                         break;
                 }
             }

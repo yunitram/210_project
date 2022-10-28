@@ -24,7 +24,7 @@ public class CharacterList {
     // requires: name of a character that is in the character list
     // modifies: this
     // effect: removes the character from the character list
-    public List<Character> removeCharacter(String s) {
+    public CharacterList removeCharacter(String s) {
         int w = 0;
         for (int count = 0; count < this.characters.size(); count++) {
             if (this.characters.get(count).getCharacterName().equals(s)) {
@@ -32,7 +32,7 @@ public class CharacterList {
             }
         }
         this.characters.remove(w);
-        return this.characters;
+        return this;
     }
 
     // requires: nothing
@@ -57,7 +57,7 @@ public class CharacterList {
     // effects: prints all characters in the list with their descriptions
     public String printCharacters() {
         String s = "";
-        for (Character c: this.characters) {
+        for (Character c : this.characters) {
             s = s.concat(c.charAnddesc()).concat("\n");
         }
         return s;
@@ -82,4 +82,11 @@ public class CharacterList {
     public void addChar(Character c) {
         this.characters.add(c);
     }
+
+    // Effects, takes two characterlists cl and bl, removes elements of bl from cl
+    public CharacterList removeCharacters(CharacterList cl, CharacterList bl) {
+        for (Character b : bl.getCharacters()) {
+            cl.removeCharacter(b.getCharacterName());
+        }
+        return cl;}
 }

@@ -10,7 +10,7 @@ class TierListTest {
     // test case of finding a tier in tierlist with 5 entries
     @Test
     void testfindTier() {
-        TierList testy = new TierList();
+        TierList testy = new TierList("tierlist 1");
         new Tier();
         Tier testy1;
         testy.createElList();
@@ -20,7 +20,7 @@ class TierListTest {
 
     @Test
     void testgetPos() {
-        TierList testy = new TierList();
+        TierList testy = new TierList("tierlist 1");
         new Tier();
         testy.createElList();
         assertEquals(testy.getPos("S"), 0);
@@ -32,7 +32,7 @@ class TierListTest {
     // test the case of adding a tier to an empty tierlist
     @Test
     void testaddTier() {
-        TierList testy = new TierList();
+        TierList testy = new TierList("tierlist 1");
         assertEquals(testy.tiersList.size(), 0);
         testy.addTier("E");
         assertEquals(testy.tiersList.size(), 1);
@@ -42,7 +42,7 @@ class TierListTest {
     // test the case of adding a tier to a non-empty tierlist
     @Test
     void testaddanotherTier() {
-        TierList testy = new TierList();
+        TierList testy = new TierList("tierlist 1");
         testy.createElList();
         assertEquals(testy.tiersList.size(), 5);
         testy.addTier("G");
@@ -52,7 +52,7 @@ class TierListTest {
 
     @Test
     void testswapTiers() {
-        TierList testy = new TierList();
+        TierList testy = new TierList("tierlist 1");
         new Tier();
         testy.createElList();
         assertEquals(testy.getPos("S"), 0);
@@ -64,7 +64,7 @@ class TierListTest {
 
     @Test
     void testprintTiers() {
-        TierList testy = new TierList();
+        TierList testy = new TierList("tierlist 1");
         Character naruto = new Character("naruto", "the seventh");
         Character vegeta = new Character("vegeta", "the saiyan prince");
         testy.addTier("S");

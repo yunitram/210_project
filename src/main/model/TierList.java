@@ -1,18 +1,32 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 // represents the whole Tierlist, consists of a list of tiers
-public class TierList {
+public class TierList implements Writable {
     final List<Tier> tiersList;
+    private String name;
 
     // requires: nothing
     // modifies: nothing
     // effects: constructs a Tierlist with an empty list of Tiers
-    public TierList() {
-        this.tiersList = new ArrayList<>();
+    public TierList(String name) {
+        this.name = name;
+        tiersList = new ArrayList<>();
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public List<Tier> getTiers() {
+        return this.tiersList;
     }
 
     // requires: nothing
@@ -22,6 +36,10 @@ public class TierList {
         Tier newbie = new Tier();
         newbie.renameTier(t);
         this.tiersList.add(newbie);
+    }
+
+    public void addFilledTier(Tier t) {
+        this.tiersList.add(t);
     }
 
     // method is unused currently but keeping it in case I want to add a swap function
@@ -91,4 +109,19 @@ public class TierList {
         return this.tiersList.get(w); // returns tier
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("tiers", tierListToJason());
+        return json;
+    }
+
+    private JSONArray tierListToJason() {
+        JSONArray jsonArray = new JSONArray();
+        for (Tier t : tiersList) {
+            jsonArray.put(t.toJson());
+        }
+        return jsonArray;
+    }
 }
