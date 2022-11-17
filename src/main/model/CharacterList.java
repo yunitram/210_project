@@ -56,9 +56,9 @@ public class CharacterList {
     // modifies: nothing
     // effects: prints all characters in the list with their descriptions
     public String printCharacters() {
-        String s = "";
+        String s = "<html><p>";
         for (Character c : this.characters) {
-            s = s.concat(c.charAnddesc()).concat("\n");
+            s = s.concat(c.charAnddesc()).concat("<html><p>");
         }
         return s;
     }

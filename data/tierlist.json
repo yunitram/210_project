@@ -6,14 +6,14 @@
         },
         {
             "name": "A",
-            "tiercontent": [{
-                "characterName": "goku",
-                "description": " (in the hyperbolic time chamber)"
-            }]
+            "tiercontent": []
         },
         {
             "name": "B",
-            "tiercontent": []
+            "tiercontent": [{
+                "characterName": "naruto",
+                "description": " (the hokage)"
+            }]
         },
         {
             "name": "C",

@@ -89,9 +89,9 @@ public class TierList implements Writable {
     // modifies: nothing
     // effects: prints all tiers and their characterlists in the tierlist
     public String printTiers() {
-        String s = "";
+        String s = "<html><p>";
         for (Tier tier : this.tiersList) {
-            s = s.concat(tier.tierandchars()).concat("\n");
+            s = s.concat(tier.tierandchars()).concat("<html><p>");
         }
         return s;
     }
