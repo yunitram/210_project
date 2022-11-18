@@ -7,45 +7,36 @@ import model.TierList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
 // Tierlist application
-// Some code was taken from the sample application
 public class Torun extends JFrame implements ActionListener {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 1000;
     private static final int BIGFONT = 20;
     private Scanner input;
     private CharacterList characterList;
-    TierList tierlist;
     private TierList tierList;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/tierlist.json";
     JLabel tierLabel;
     JLabel characterLabel;
-    JLabel inputLabel;
-    JFrame frame;
     JButton saveButton;
     JButton loadButton;
     JButton addButton;
     JButton removeButton;
     JButton createButton;
     JPanel viewerPanel;
-    JPanel mainPanel;
     JPanel charactersPanel;
     JPanel tierPanel;
     JPanel buttonPanel;
-    JPanel inputPanel;
     CardLayout cardLayout;
     String userinput;
     String userinput1;
@@ -73,6 +64,9 @@ public class Torun extends JFrame implements ActionListener {
     }
 
 
+    // requires: nothing
+    // modifies: tierList
+    // effects: Creates a tierPanel with a tierlist with empty tiers S - D
     public void tierPanel() {
         tierPanel = new JPanel();
         tierLabel = new JLabel();
@@ -86,7 +80,9 @@ public class Torun extends JFrame implements ActionListener {
         tierPanel.add(tierLabel);
     }
 
-
+    // requires: nothing
+    // modifies: characterlist
+    // effects: Creates a characterlist with the starting characters
     public void characterPanel() {
         charactersPanel = new JPanel();
         characterLabel = new JLabel();
@@ -100,6 +96,9 @@ public class Torun extends JFrame implements ActionListener {
         charactersPanel.add(characterLabel);
     }
 
+    // requires: nothing
+    // modifies: nothing
+    // effects: Creates a buttonPanel
     public void buttonPanel() {
         buttonPanel = new JPanel();
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -116,6 +115,9 @@ public class Torun extends JFrame implements ActionListener {
         buttonPanel.add(quitButton);
     }
 
+    // requires: nothing
+    // modifies: nothing
+    // effects: creates buttons
     public void makeButtons() {
         saveButton = new JButton("Save to file");
         setupButton(saveButton, "Save to file");
@@ -142,8 +144,9 @@ public class Torun extends JFrame implements ActionListener {
         setupButton(quitButton, "Quit programme");
     }
 
-    // MODIFIES: this
-    //EFFECTS: sets up an individual button b with ActionCommand s
+    // requires: nothing
+    // modifies: nothing
+    // effects: formats the button given
     private void setupButton(JButton b, String s) {
         b.setFont(new Font("Average", Font.BOLD, BIGFONT));
         b.setHorizontalAlignment(SwingConstants.CENTER);
@@ -156,11 +159,11 @@ public class Torun extends JFrame implements ActionListener {
         b.setActionCommand(s);
     }
 
-    // MODIFIES: this
-    // EFFECTS: sets up window graphic components in initial state
+    // requires: nothing
+    // modifies: this
+    // effects: initializes the display
     private void initializePanel() {
         setLayout(new BorderLayout());
-        setUndecorated(false);
         setTitle("TierList");
         ImageIcon icon = new ImageIcon("tiermaker.png");
         JLabel iconLabel = new JLabel(icon);
@@ -181,12 +184,19 @@ public class Torun extends JFrame implements ActionListener {
         centreOnScreen();
     }
 
+    // method taken from alarmsystem project
+    // requires: nothing
+    // modifies: this
+    // effects: centres the display
     private void centreOnScreen() {
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
         int height = Toolkit.getDefaultToolkit().getScreenSize().height;
         setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
     }
 
+    // requires: nothing
+    // modifies: this
+    // effects: performs function according to the button pressed
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -259,7 +269,7 @@ public class Torun extends JFrame implements ActionListener {
 
     // requires: nothing
     // modifies: tierList, characterList
-    // effect adds a character to a specified tier
+    // effects: adds a character to a specified tier and reprints characterList and tierList
     private void addfn() {
         userinput = JOptionPane.showInputDialog(tierPanel, "enter character name", null);
         userinput1 = JOptionPane.showInputDialog(tierPanel, "enter tier name", null);
@@ -271,7 +281,7 @@ public class Torun extends JFrame implements ActionListener {
 
     // requires: nothing
     // modifies: tierList, characterList
-    // effect: removes a character to a specified tier
+    // effect: removes a character from a specified tier and reprints characterList and tierList
     private void removefn() {
         Tier n;
         userinput = JOptionPane.showInputDialog(tierPanel, "enter character name", null);
@@ -286,6 +296,7 @@ public class Torun extends JFrame implements ActionListener {
     // requires: nothing
     // modifies: characterList
     // effects: prompts the user to create a character name and description, adds the character to characterList
+    // and reprints characterList
     private void createcharfn() {
         userinput = JOptionPane.showInputDialog(tierPanel, "enter character name", null);
         userinput1 = JOptionPane.showInputDialog(tierPanel, "enter character description", null);
@@ -296,7 +307,7 @@ public class Torun extends JFrame implements ActionListener {
 
 //     requires: nothing
 //     modifies: tierList
-//     effects: promts the user to create a Tier name, adds an empty tier to the tierlist
+//     effects: prompts the user to create a Tier name, adds an empty tier to the tierlist and reprints tierlist
     private void createtierfn() {
         userinput = JOptionPane.showInputDialog(tierPanel, "enter tier name", null);
         tierList.addTier(userinput);
@@ -305,7 +316,7 @@ public class Torun extends JFrame implements ActionListener {
 
     // requires: a tierlist with at least two tiers
     // modifies: tierlist
-    // effects: swaps the positions of two tiers in the tierlist
+    // effects: inserts the position of the first tier into the position of the second tier
     private void swapfn() {
         userinput = JOptionPane.showInputDialog(tierPanel, "enter names of tiers to swap", null);
         userinput1 = JOptionPane.showInputDialog(tierPanel, "enter names of tiers to swap", null);
