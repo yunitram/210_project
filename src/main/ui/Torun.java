@@ -187,7 +187,7 @@ public class Torun extends JFrame implements ActionListener {
         setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
     }
 
-    @SuppressWarnings("checkstyle:MethodLength")
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Save to file":

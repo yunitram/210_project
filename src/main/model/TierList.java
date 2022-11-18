@@ -47,9 +47,15 @@ public class TierList implements Writable {
     // modifies: this
     // effects: swaps the positions of the tiers
     public void swapTiers(String s, String t) {
-        Integer w = this.getPos(s);
-        Integer x = this.getPos(t);
-        Collections.swap(this.tiersList, w, x);
+        int w = this.getPos(s);
+        int x = this.getPos(t);
+        if (w > x) {
+            tiersList.add(x, findTier(s));
+            tiersList.remove(w + 1);
+        } else if (x > w) {
+            tiersList.add(x, findTier(s));
+            tiersList.remove(w);
+        }
     }
 
     // takes a name of Tier, produces index position of that Tier in the TierList
