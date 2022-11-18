@@ -7,10 +7,13 @@ import model.TierList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -18,8 +21,8 @@ import java.util.Scanner;
 // Tierlist application
 // Some code was taken from the sample application
 public class Torun extends JFrame implements ActionListener {
-    private static final int WIDTH = 1300;
-    private static final int HEIGHT = 1300;
+    private static final int WIDTH = 1000;
+    private static final int HEIGHT = 1000;
     private static final int BIGFONT = 20;
     private Scanner input;
     private CharacterList characterList;
@@ -36,6 +39,7 @@ public class Torun extends JFrame implements ActionListener {
     JButton loadButton;
     JButton addButton;
     JButton removeButton;
+    JButton createButton;
     JPanel viewerPanel;
     JPanel mainPanel;
     JPanel charactersPanel;
@@ -46,6 +50,10 @@ public class Torun extends JFrame implements ActionListener {
     String userinput;
     String userinput1;
     JButton quitButton;
+    JButton newtierButton;
+    JButton swapButton;
+    Character sheesh;
+
 
     // effects: runs tierlist programme
     public Torun() {
@@ -61,7 +69,6 @@ public class Torun extends JFrame implements ActionListener {
         tierPanel();
         characterPanel();
         buttonPanel();
-        inputPanel();
         initializePanel();
     }
 
@@ -73,24 +80,12 @@ public class Torun extends JFrame implements ActionListener {
         tierLabel.setFont(new Font("Average", Font.BOLD, BIGFONT));
         tierLabel.setHorizontalAlignment(SwingConstants.LEFT);
         tierLabel.setForeground(Color.WHITE);
-        tierPanel.setBackground(Color.BLACK);
+        tierPanel.setBackground(Color.black);
         tierLabel.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         tierPanel.setLayout(new GridLayout());
         tierPanel.add(tierLabel);
     }
 
-    public void inputPanel() {
-        inputPanel = new JPanel();
-        inputLabel = new JLabel();
-        inputLabel.setText(userinput);
-        inputLabel.setFont(new Font("Average", Font.BOLD, BIGFONT));
-        inputLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        inputLabel.setForeground(Color.WHITE);
-        inputPanel.setMinimumSize(new Dimension(100, 100));
-        inputPanel.setBackground(Color.BLACK);
-        inputPanel.setLayout(new GridLayout());
-        inputPanel.add(inputLabel);
-    }
 
     public void characterPanel() {
         charactersPanel = new JPanel();
@@ -99,7 +94,7 @@ public class Torun extends JFrame implements ActionListener {
         characterLabel.setFont(new Font("Average", Font.BOLD, BIGFONT));
         characterLabel.setHorizontalAlignment(SwingConstants.LEFT);
         characterLabel.setForeground(Color.WHITE);
-        charactersPanel.setBackground(Color.BLACK);
+        charactersPanel.setBackground(Color.black);
         charactersPanel.setMinimumSize(new Dimension(100, 100));
         charactersPanel.setLayout(new GridLayout());
         charactersPanel.add(characterLabel);
@@ -107,7 +102,7 @@ public class Torun extends JFrame implements ActionListener {
 
     public void buttonPanel() {
         buttonPanel = new JPanel();
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS));
         buttonPanel.setMinimumSize(new Dimension(WIDTH,
                 HEIGHT));
@@ -115,6 +110,9 @@ public class Torun extends JFrame implements ActionListener {
         buttonPanel.add(loadButton);
         buttonPanel.add(addButton);
         buttonPanel.add(removeButton);
+        buttonPanel.add(createButton);
+        buttonPanel.add((newtierButton));
+        buttonPanel.add(swapButton);
         buttonPanel.add(quitButton);
     }
 
@@ -131,6 +129,15 @@ public class Torun extends JFrame implements ActionListener {
         removeButton = new JButton("Remove character from a tier");
         setupButton(removeButton, "Remove character from a tier");
 
+        createButton = new JButton("Create a character");
+        setupButton(createButton, "Create character");
+
+        newtierButton = new JButton("Create a tier");
+        setupButton(newtierButton, "Create a tier");
+
+        swapButton = new JButton("Swap tiers");
+        setupButton(swapButton, "Swap tiers");
+
         quitButton = new JButton("Quit programme");
         setupButton(quitButton, "Quit programme");
     }
@@ -141,7 +148,7 @@ public class Torun extends JFrame implements ActionListener {
         b.setFont(new Font("Average", Font.BOLD, BIGFONT));
         b.setHorizontalAlignment(SwingConstants.CENTER);
         b.setForeground(Color.WHITE);
-        b.setBackground(Color.BLACK);
+        b.setBackground(Color.black);
         b.addActionListener(this);
         b.setPreferredSize(new Dimension(500, BIGFONT + 10));
         b.setMaximumSize(new Dimension(500, BIGFONT + 10));
@@ -155,18 +162,22 @@ public class Torun extends JFrame implements ActionListener {
         setLayout(new BorderLayout());
         setUndecorated(false);
         setTitle("TierList");
+        ImageIcon icon = new ImageIcon("tiermaker.png");
+        JLabel iconLabel = new JLabel(icon);
+        iconLabel.setPreferredSize(new Dimension(WIDTH, 200));
         cardLayout = new CardLayout();
         viewerPanel = new JPanel();
+        viewerPanel.add(iconLabel, BorderLayout.NORTH);
         viewerPanel.add(tierPanel, "tierPanel");
         viewerPanel.add(charactersPanel, "charactersPanel");
         viewerPanel.add(buttonPanel, "buttonPanel");
-        viewerPanel.add(inputPanel, "inputPanel");
 
 
         add(viewerPanel, BorderLayout.CENTER);
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         setResizable(true);
         setVisible(true);
+        viewerPanel.setBackground(Color.BLACK);
         centreOnScreen();
     }
 
@@ -176,6 +187,7 @@ public class Torun extends JFrame implements ActionListener {
         setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
     }
 
+    @SuppressWarnings("checkstyle:MethodLength")
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Save to file":
@@ -189,6 +201,15 @@ public class Torun extends JFrame implements ActionListener {
                 break;
             case "Remove character from a tier":
                 this.removefn();
+                break;
+            case "Create character":
+                this.createcharfn();
+                break;
+            case "Create a tier":
+                this.createtierfn();
+                break;
+            case "Swap tiers":
+                this.swapfn();
                 break;
             case "Quit programme":
                 System.exit(0);
@@ -266,24 +287,30 @@ public class Torun extends JFrame implements ActionListener {
     // modifies: characterList
     // effects: prompts the user to create a character name and description, adds the character to characterList
     private void createcharfn() {
-        String newname;
-        String newdesc;
-        System.out.println("Character name:");
-        newname = input.nextLine();
-        System.out.println("Character description:");
-        newdesc = input.nextLine();
-        Character sheesh = new Character(newname, newdesc);
+        userinput = JOptionPane.showInputDialog(tierPanel, "enter character name", null);
+        userinput1 = JOptionPane.showInputDialog(tierPanel, "enter character description", null);
+        sheesh = new Character(userinput, userinput1);
         characterList.addChar(sheesh);
+        characterLabel.setText(characterList.printCharacters());
     }
 
-    // requires: nothing
-    // modifies: tierList
-    // effects: promts the user to create a Tier name, adds an empty tier to the tierlist
+//     requires: nothing
+//     modifies: tierList
+//     effects: promts the user to create a Tier name, adds an empty tier to the tierlist
     private void createtierfn() {
-        String newname;
-        System.out.println("Tier name:");
-        newname = input.nextLine();
-        tierList.addTier(newname);
+        userinput = JOptionPane.showInputDialog(tierPanel, "enter tier name", null);
+        tierList.addTier(userinput);
+        tierLabel.setText(tierList.printTiers());
+    }
+
+    // requires: a tierlist with at least two tiers
+    // modifies: tierlist
+    // effects: swaps the positions of two tiers in the tierlist
+    private void swapfn() {
+        userinput = JOptionPane.showInputDialog(tierPanel, "enter names of tiers to swap", null);
+        userinput1 = JOptionPane.showInputDialog(tierPanel, "enter names of tiers to swap", null);
+        tierList.swapTiers(userinput, userinput1);
+        tierLabel.setText(tierList.printTiers());
     }
 
     // requires: nothing
