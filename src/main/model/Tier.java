@@ -27,6 +27,7 @@ public class Tier implements Writable {
     // modifies: this
     // effects: adds a character into the Tier
     public void addCharacter(Character c) {
+        EventLog.getInstance().logEvent(new Event("Character added to tier"));
         this.characters.add(c);
     }
 
@@ -40,6 +41,7 @@ public class Tier implements Writable {
                 w = count;
             }
         }
+        EventLog.getInstance().logEvent(new Event("Character removed from tier"));
         this.characters.remove(w);
     }
 

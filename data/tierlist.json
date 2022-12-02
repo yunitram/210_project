@@ -1,15 +1,15 @@
 {
     "tiers": [
         {
-            "name": "GOAT",
-            "tiercontent": [{
-                "characterName": "GODTIER",
-                "description": "whoops"
-            }]
+            "name": "GODTIER",
+            "tiercontent": []
         },
         {
             "name": "S",
-            "tiercontent": []
+            "tiercontent": [{
+                "characterName": "naruto",
+                "description": " (the hokage)"
+            }]
         },
         {
             "name": "A",
@@ -17,10 +17,7 @@
         },
         {
             "name": "B",
-            "tiercontent": [{
-                "characterName": "goku",
-                "description": " (in the hyperbolic time chamber)"
-            }]
+            "tiercontent": []
         },
         {
             "name": "C",

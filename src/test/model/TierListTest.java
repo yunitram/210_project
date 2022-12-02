@@ -4,8 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TierListTest {
@@ -60,7 +58,7 @@ class TierListTest {
         testy.createElList();
         assertEquals(testy.getPos("S"), 0);
         assertEquals(testy.getPos("D"), 4);
-        testy.swapTiers("S", "D");
+        testy.shiftTiers("S", "D");
         assertEquals(testy.getPos("S"), 4);
         assertEquals(testy.getPos("D"), 0);
     }

@@ -5,7 +5,6 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 // represents the whole Tierlist, consists of a list of tiers
@@ -46,7 +45,7 @@ public class TierList implements Writable {
     // requires: names of two existing tiers
     // modifies: this
     // effects: swaps the positions of the tiers
-    public void swapTiers(String s, String t) {
+    public void shiftTiers(String s, String t) {
         int w = this.getPos(s);
         int x = this.getPos(t);
         if (w > x) {
@@ -56,6 +55,7 @@ public class TierList implements Writable {
             tiersList.add(x, findTier(s));
             tiersList.remove(w);
         }
+        EventLog.getInstance().logEvent(new Event("Tiers shifted"));
     }
 
     // takes a name of Tier, produces index position of that Tier in the TierList

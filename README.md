@@ -43,3 +43,14 @@ maker.
 - I want to be able to save my Tierlist to file
 - I want to be able to load my Tierlists from file
   
+
+## Phase 4: Task 2
+
+Thu Dec 01 21:24:15 PST 2022
+Character added to tier
+Thu Dec 01 21:24:19 PST 2022
+Character created
+Thu Dec 01 21:24:19 PST 2022
+Character removed from tier
+Thu Dec 01 21:24:33 PST 2022
+Character created

@@ -43,11 +43,11 @@ public class CharacterList {
         this.characters.add(naruto);
         Character goku = new Character("goku", " (in the hyperbolic time chamber)");
         this.characters.add(goku);
-        Character makima = new Character("makima", " (would definitely simp for her)");
+        Character makima = new Character("makima", " (very cool)");
         this.characters.add(makima);
         Character corey = new Character("corey", " (in the house)");
         this.characters.add(corey);
-        Character kirito = new Character("kirito", " (the black swordsman)");
+        Character kirito = new Character("your mother", ":)");
         this.characters.add(kirito);
         return this.characters;
     }
@@ -80,6 +80,7 @@ public class CharacterList {
     // modifies: this
     // effects: adds character to the characterlist
     public void addChar(Character c) {
+        EventLog.getInstance().logEvent(new Event("Character created"));
         this.characters.add(c);
     }
 
@@ -90,6 +91,7 @@ public class CharacterList {
         for (Character b : bl.getCharacters()) {
             cl.removeCharacter(b.getCharacterName());
         }
+        EventLog.getInstance().logEvent(new Event("Characters created"));
         return cl;
     }
 }

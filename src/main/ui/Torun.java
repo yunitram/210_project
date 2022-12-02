@@ -1,9 +1,8 @@
 package ui;
 
+import model.*;
 import model.Character;
-import model.CharacterList;
-import model.Tier;
-import model.TierList;
+import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 // Tierlist application
-public class Torun extends JFrame implements ActionListener {
+public class Torun extends JFrame implements ActionListener, LogPrinter {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 1000;
     private static final int BIGFONT = 20;
@@ -222,9 +221,12 @@ public class Torun extends JFrame implements ActionListener {
                 this.swapfn();
                 break;
             case "Quit programme":
+                this.printLog(EventLog.getInstance());
                 System.exit(0);
         }
     }
+
+
 
 //    //requires: nothing
 //    // modifies: nothing
@@ -320,7 +322,7 @@ public class Torun extends JFrame implements ActionListener {
     private void swapfn() {
         userinput = JOptionPane.showInputDialog(tierPanel, "enter names of tiers to swap", null);
         userinput1 = JOptionPane.showInputDialog(tierPanel, "enter names of tiers to swap", null);
-        tierList.swapTiers(userinput, userinput1);
+        tierList.shiftTiers(userinput, userinput1);
         tierLabel.setText(tierList.printTiers());
     }
 
@@ -353,6 +355,13 @@ public class Torun extends JFrame implements ActionListener {
         }
     }
 
+
+    @Override
+    public void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString());
+        }
+    }
 
 
     // requires: nothing
