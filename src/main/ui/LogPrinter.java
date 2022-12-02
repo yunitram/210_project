@@ -13,5 +13,6 @@ public interface LogPrinter {
 	 * @param el  the event log to be printed
 	 * @throws LogException when printing fails for any reason
 	 */
+    // taken from alarmsystem
     void printLog(EventLog el) throws LogException;
 }

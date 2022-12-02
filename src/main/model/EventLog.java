@@ -10,6 +10,7 @@ import java.util.Iterator;
  * one EventLog in the system and that the system has global access
  * to the single instance of the EventLog.
  */
+// taken from alarmsystem
 public class EventLog implements Iterable<Event> {
 	/** the only EventLog in the system (Singleton Design Pattern) */
     private static EventLog theLog;
@@ -43,14 +44,7 @@ public class EventLog implements Iterable<Event> {
     public void logEvent(Event e) {
         events.add(e);
     }
-	
-	/**
-	 * Clears the event log and logs the event.
-	 */
-    public void clear() {
-        events.clear();
-        logEvent(new Event("Event log cleared."));
-    }
+
 
     @Override
 	public Iterator<Event> iterator() {
