@@ -46,13 +46,10 @@ maker.
 
 ## Phase 4: Task 2
 
-Thu Dec 01 21:24:15 PST 2022
+Fri Dec 02 18:45:43 PST 2022
 Character added to tier
-Thu Dec 01 21:24:19 PST 2022
-Character created
-Thu Dec 01 21:24:19 PST 2022
-Character removed from tier
-Thu Dec 01 21:24:33 PST 2022
+
+Fri Dec 02 18:45:53 PST 2022
 Character created
 
 ## Phase 4: Task 3

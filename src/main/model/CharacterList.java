@@ -91,7 +91,6 @@ public class CharacterList {
         for (Character b : bl.getCharacters()) {
             cl.removeCharacter(b.getCharacterName());
         }
-        EventLog.getInstance().logEvent(new Event("Characters created"));
         return cl;
     }
 }
