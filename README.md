@@ -54,3 +54,12 @@ Thu Dec 01 21:24:19 PST 2022
 Character removed from tier
 Thu Dec 01 21:24:33 PST 2022
 Character created
+
+## Phase 4: Task 3
+There is a lot of duplicate code in my programme between classes Tier, CharacterList, and TierList.
+Ideally I would want two superclasses, and have Tier and CharacterList extend one, and CharacterList and TierList
+extend the other. However since one class cannot extend multiple other classes, I would refactor
+this code using an interface
+- CharacterList and Tier have lots of duplicate code, so I would create a superclass and extend that class
+- CharacterList and TierList have duplicate code as well, I would refactor this by using an interface, and
+  implementing this interface in those classes.
