@@ -43,7 +43,7 @@ public class CharacterList {
         this.characters.add(naruto);
         Character goku = new Character("goku", " (in the hyperbolic time chamber)");
         this.characters.add(goku);
-        Character makima = new Character("makima", " (very cool)");
+        Character makima = new Character("makima", " (IM SIMPING)");
         this.characters.add(makima);
         Character corey = new Character("corey", " (in the house)");
         this.characters.add(corey);

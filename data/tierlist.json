@@ -1,19 +1,18 @@
 {
     "tiers": [
         {
-            "name": "GODTIER",
-            "tiercontent": []
-        },
-        {
             "name": "S",
             "tiercontent": [{
-                "characterName": "naruto",
-                "description": " (the hokage)"
+                "characterName": "makima",
+                "description": " (IM SIMPING)"
             }]
         },
         {
             "name": "A",
-            "tiercontent": []
+            "tiercontent": [{
+                "characterName": "goku",
+                "description": " (in the hyperbolic time chamber)"
+            }]
         },
         {
             "name": "B",
